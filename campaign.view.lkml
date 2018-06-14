@@ -36,7 +36,7 @@ view: campaign_adapter {
 
   dimension: amount {
     type: number
-    sql: (${TABLE}.amount / 1000000) ;;
+    sql: ${TABLE}.amount ;;
   }
 
   dimension: bid_type {

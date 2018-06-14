@@ -105,7 +105,7 @@ view: keyword_adapter {
   dimension: cpc_bid {
     hidden: yes
     type: number
-    sql: (${TABLE}.cpc_bid / 1000000) ;;
+    sql: ${TABLE}.cpc_bid ;;
   }
 
   dimension: cpc_bid_source {
@@ -116,7 +116,7 @@ view: keyword_adapter {
   dimension: cpm_bid {
     hidden: yes
     type: number
-    sql: (${TABLE}.cpm_bid / 1000000) ;;
+    sql: ${TABLE}.cpm_bid ;;
   }
 
   dimension: creative_quality_score {

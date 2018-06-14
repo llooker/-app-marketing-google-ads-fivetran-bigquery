@@ -3,7 +3,7 @@ view: google_adwords_base {
 
   dimension: _date {
     hidden: yes
-    type: date_raw
+    type: date_time
     sql: ${TABLE}.date ;;
   }
 

@@ -127,17 +127,17 @@ view: ad_group_adapter {
 
   dimension: cpc_bid {
     type: string
-    sql: (${TABLE}.cpc_bid / 1000000) ;;
+    sql: ${TABLE}.cpc_bid ;;
   }
 
   dimension: cpm_bid {
     type: number
-    sql: (${TABLE}.cpm_bid / 1000000) ;;
+    sql: ${TABLE}.cpm_bid ;;
   }
 
   dimension: cpv_bid {
     type: string
-    sql: (${TABLE}.cpv_bid / 1000000) ;;
+    sql: ${TABLE}.cpv_bid ;;
   }
 
   dimension: enhanced_cpc_enabled {
@@ -166,7 +166,7 @@ view: ad_group_adapter {
 
   dimension: target_cpa {
     type: number
-    sql: (${TABLE}.target_cpa / 1000000) ;;
+    sql: ${TABLE}.target_cpa ;;
   }
 
   dimension: target_cpa_bid_source {

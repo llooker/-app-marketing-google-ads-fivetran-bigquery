@@ -148,7 +148,7 @@ view: ad_impressions_adapter {
   dimension: cost {
     hidden: yes
     type: number
-    sql: ${TABLE}.cost / 1000000;;
+    sql: ${TABLE}.cost ;;
   }
 
   dimension: device {
