@@ -142,7 +142,7 @@ view: ad_impressions_adapter {
   dimension: conversionvalue {
     hidden: yes
     type: number
-    sql: ${TABLE}.conversionvalue ;;
+    sql: ${TABLE}.conversion_value ;;
   }
 
   dimension: cost {
