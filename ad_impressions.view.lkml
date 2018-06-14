@@ -442,7 +442,7 @@ explore: ad_impressions_geo_adapter {
 
 view: ad_impressions_geo_adapter {
   extends: [ad_impressions_ad_group_adapter]
-  sql_table_name: {{ fact.adwords_schema._sql }}.GeoStats ;;
+  sql_table_name: {{ fact.adwords_schema._sql }}.geo_stats ;;
 
   dimension: city_criteria_id {
     hidden: yes
