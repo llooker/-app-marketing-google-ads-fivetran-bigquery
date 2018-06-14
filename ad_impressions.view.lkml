@@ -3,7 +3,6 @@ include: "/app_marketing_analytics_config/adwords_config.view"
 include: "ad.view"
 include: "geotargeting.view"
 include: "keyword.view"
-include: "video.view"
 
 view: hour_base {
   extension: required
