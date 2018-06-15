@@ -215,12 +215,12 @@ view: ad_impressions_campaign_adapter {
 
   dimension: base_campaign_id {
     hidden: yes
-    sql: ${TABLE}.BaseCampaignId ;;
+    sql: ${TABLE}.base_campaign_id ;;
   }
 
   dimension: campaign_id {
     hidden: yes
-    sql: ${TABLE}.CampaignId ;;
+    sql: ${TABLE}.campaign_id ;;
   }
 
   dimension: campaign_id_string {
