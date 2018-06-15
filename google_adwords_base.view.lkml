@@ -3,8 +3,8 @@ view: google_adwords_base {
 
   dimension: _date {
     hidden: yes
-    type: date_time
-    sql: ${TABLE}.date ;;
+    type: date_raw
+    sql: CAST(${TABLE}.date AS DATE) ;;
   }
 
   dimension: latest {
