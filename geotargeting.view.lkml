@@ -17,6 +17,11 @@ view: geotargeting {
     sql: ${TABLE}.Criteria_ID ;;
   }
 
+  dimension: criteria_id_string {
+    type: number
+    sql: CAST(${TABLE}.Criteria_ID AS STRING) ;;
+  }
+
   dimension: name {
     type: string
     sql: ${TABLE}.Name ;;

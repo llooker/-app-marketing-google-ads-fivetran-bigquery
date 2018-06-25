@@ -332,7 +332,7 @@ explore: ad_impressions_geo_adapter {
     from: geotargeting
     view_label: "Country"
     fields: [country_code]
-    sql_on: ${fact.country_criteria_id} = ${geo_country.criteria_id} ;;
+    sql_on: ${fact.country_criteria_id} = ${geo_country.criteria_id_string} ;;
     relationship: many_to_one
   }
 
@@ -340,7 +340,7 @@ explore: ad_impressions_geo_adapter {
     from: geotargeting
     view_label: "US State"
     fields: [state]
-    sql_on: ${fact.region_criteria_id} = ${geo_us_state.criteria_id} AND
+    sql_on: ${fact.region_criteria_id} = ${geo_us_state.criteria_id_string} AND
       ${geo_us_state.is_us_state} ;;
     relationship: many_to_one
     type: inner
@@ -350,7 +350,7 @@ explore: ad_impressions_geo_adapter {
     from: geotargeting
     view_label: "US Postal Code"
     fields: [postal_code]
-    sql_on: ${fact.most_specific_criteria_id} = ${geo_us_postal_code.criteria_id} AND
+    sql_on: ${fact.most_specific_criteria_id} = ${geo_us_postal_code.criteria_id_string} AND
       ${geo_us_postal_code.is_us_postal_code} ;;
     relationship: many_to_one
     type: inner
@@ -360,7 +360,7 @@ explore: ad_impressions_geo_adapter {
     from: geotargeting
     view_label: "US Postal Code"
     fields: [state]
-    sql_on: ${geo_us_postal_code.parent_id} = ${geo_us_postal_code_state.criteria_id} AND
+    sql_on: ${geo_us_postal_code.parent_id} = ${geo_us_postal_code_state.criteria_id_string} AND
       ${geo_us_postal_code_state.is_us_state} ;;
     relationship: many_to_one
     type: inner
@@ -371,7 +371,7 @@ explore: ad_impressions_geo_adapter {
     from: geotargeting
     view_label: "Region"
     fields: [name, country_code]
-    sql_on: ${fact.region_criteria_id} = ${geo_region.criteria_id} ;;
+    sql_on: ${fact.region_criteria_id} = ${geo_region.criteria_id_string} ;;
     relationship: many_to_one
   }
 
@@ -379,7 +379,7 @@ explore: ad_impressions_geo_adapter {
     from: geotargeting
     view_label: "Metro"
     fields: [name, country_code]
-    sql_on: ${fact.metro_criteria_id} = ${geo_metro.criteria_id} ;;
+    sql_on: ${fact.metro_criteria_id} = ${geo_metro.criteria_id_string} ;;
     relationship: many_to_one
   }
 
@@ -387,7 +387,7 @@ explore: ad_impressions_geo_adapter {
     from: geotargeting
     view_label: "City"
     fields: [name, country_code]
-    sql_on: ${fact.city_criteria_id} = ${geo_city.criteria_id} ;;
+    sql_on: ${fact.city_criteria_id} = ${geo_city.criteria_id_string} ;;
     relationship: many_to_one
   }
 }
@@ -399,30 +399,30 @@ view: ad_impressions_geo_adapter {
   dimension: city_criteria_id {
     hidden: yes
     type: number
-    sql: CAST(${TABLE}.city_criteria_id AS INT64);;
+    sql: ${TABLE}.city_criteria_id;;
   }
 
   dimension: country_criteria_id {
     hidden: yes
     type: number
-    sql: CAST(${TABLE}.country_criteria_id AS INT64) ;;
+    sql: ${TABLE}.country_criteria_id ;;
   }
 
   dimension: metro_criteria_id {
     hidden: yes
     type: number
-    sql: CAST(${TABLE}.metro_criteria_id AS INT64) ;;
+    sql: ${TABLE}.metro_criteria_id ;;
   }
 
   dimension: most_specific_criteria_id {
     hidden: yes
     type: number
-    sql: CAST(${TABLE}.most_specific_criteria_id AS INT64) ;;
+    sql: ${TABLE}.most_specific_criteria_id ;;
   }
 
   dimension: region_criteria_id {
     hidden: yes
     type: number
-    sql: CAST(${TABLE}.region_criteria_id AS INT64) ;;
+    sql: ${TABLE}.region_criteria_id ;;
   }
 }
