@@ -70,7 +70,7 @@ explore: ad_impressions_adapter {
     from: customer_adapter
     view_label: "Customer"
     sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} ;;
+      ${fact._date} = ${customer._date} ;;
     relationship: many_to_one
   }
 }
@@ -203,7 +203,7 @@ explore: ad_impressions_campaign_adapter {
     view_label: "Campaign"
     sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
       ${fact.external_customer_id} = ${campaign.external_customer_id} AND
-      ${campaign.latest};;
+      ${fact._date} = ${campaign._date} ;;
     relationship: many_to_one
   }
 }
@@ -252,14 +252,14 @@ explore: ad_impressions_ad_group_adapter {
     sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
       ${fact.campaign_id} = ${ad_group.campaign_id} AND
       ${fact.external_customer_id} = ${ad_group.external_customer_id} AND
-      ${ad_group.latest} ;;
+      ${fact._date} = ${ad_group._date} ;;
     relationship: many_to_one
   }
 }
 
 view: ad_impressions_ad_group_adapter {
   extends: [ad_impressions_campaign_adapter]
-  sql_table_name: {{ fact.adwords_schema._sql }}.ad_group_stats ;;
+  sql_table_name: {{ fact.adwords_schema._sql }}.ad_group_hourly_stats ;;
 
   dimension: ad_group_id {
     hidden: yes
@@ -301,7 +301,7 @@ explore: ad_impressions_keyword_adapter {
       ${fact.ad_group_id} = ${keyword.ad_group_id} AND
       ${fact.campaign_id} = ${keyword.campaign_id} AND
       ${fact.external_customer_id} = ${keyword.external_customer_id} AND
-      ${keyword.latest} ;;
+      ${fact._date} = ${keyword._date} ;;
     relationship: many_to_one
   }
 }
@@ -340,7 +340,7 @@ explore: ad_impressions_ad_adapter {
       ${fact.ad_group_id} = ${ad.ad_group_id} AND
       ${fact.campaign_id} = ${ad.campaign_id} AND
       ${fact.external_customer_id} = ${ad.external_customer_id} AND
-      ${ad.latest} ;;
+      ${fact._date} = ${ad._date} ;;
     relationship:  many_to_one
   }
 }
@@ -447,30 +447,30 @@ view: ad_impressions_geo_adapter {
   dimension: city_criteria_id {
     hidden: yes
     type: number
-    sql: ${TABLE}.city_criteria_id ;;
+    sql: CAST(${TABLE}.city_criteria_id AS INT64);;
   }
 
   dimension: country_criteria_id {
     hidden: yes
     type: number
-    sql: ${TABLE}.country_criteria_id  ;;
+    sql: CAST(${TABLE}.country_criteria_id AS INT64) ;;
   }
 
   dimension: metro_criteria_id {
     hidden: yes
     type: number
-    sql: ${TABLE}.metro_criteria_id  ;;
+    sql: CAST(${TABLE}.metro_criteria_id AS INT64) ;;
   }
 
   dimension: most_specific_criteria_id {
     hidden: yes
     type: number
-    sql: ${TABLE}.most_specific_criteria_id  ;;
+    sql: CAST(${TABLE}.most_specific_criteria_id AS INT64) ;;
   }
 
   dimension: region_criteria_id {
     hidden: yes
     type: number
-    sql: ${TABLE}.region_criteria_id  ;;
+    sql: CAST(${TABLE}.region_criteria_id AS INT64) ;;
   }
 }

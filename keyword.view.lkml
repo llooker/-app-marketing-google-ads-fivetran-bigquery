@@ -72,7 +72,7 @@ view: keyword_adapter {
   dimension: bidding_strategy {
     type: string
     sql: ${TABLE}.bidding_strategy_type ;;
-    }
+  }
 
   dimension: bidding_strategy_type {
     type: string
@@ -148,7 +148,7 @@ view: keyword_adapter {
   }
 
   dimension: criterion_id {
-    sql: ${TABLE}.criterion_id ;;
+    sql: ${TABLE}.id ;;
     hidden: yes
   }
 
