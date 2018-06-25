@@ -2,6 +2,18 @@ include: "/app_marketing_analytics_config/adwords_config.view"
 
 include: "google_adwords_base.view"
 
+explore: customer_join {
+  extension: required
+
+  join: customer {
+    from: customer_adapter
+    view_label: "Customer"
+    sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
+      ${fact._date} = ${customer._date} ;;
+    relationship: many_to_one
+  }
+}
+
 explore: customer_adapter {
   persist_with: adwords_etl_datagroup
   from: customer_adapter

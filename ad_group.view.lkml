@@ -2,6 +2,20 @@ include: "/app_marketing_analytics_config/adwords_config.view"
 
 include: "campaign.view"
 
+explore: ad_group_join {
+  extension: required
+
+  join: ad_group {
+    from: ad_group_adapter
+    view_label: "Ad Groups"
+    sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${fact.campaign_id} = ${ad_group.campaign_id} AND
+      ${fact.external_customer_id} = ${ad_group.external_customer_id} AND
+      ${fact._date} = ${ad_group._date} ;;
+    relationship: many_to_one
+  }
+}
+
 explore: ad_group_adapter {
   persist_with: adwords_etl_datagroup
   from: ad_group_adapter

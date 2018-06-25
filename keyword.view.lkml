@@ -3,6 +3,21 @@ include: "/app_marketing_analytics_config/adwords_config.view"
 include: "ad_group.view"
 include: "google_adwords_base.view"
 
+explore: keyword_join {
+  extension: required
+
+  join: keyword {
+    from: keyword_adapter
+    view_label: "Keyword"
+    sql_on: ${fact.criterion_id} = ${keyword.criterion_id} AND
+      ${fact.ad_group_id} = ${keyword.ad_group_id} AND
+      ${fact.campaign_id} = ${keyword.campaign_id} AND
+      ${fact.external_customer_id} = ${keyword.external_customer_id} AND
+      ${fact._date} = ${keyword._date} ;;
+    relationship: many_to_one
+  }
+}
+
 explore: keyword_adapter {
   persist_with: adwords_etl_datagroup
   from: keyword_adapter
