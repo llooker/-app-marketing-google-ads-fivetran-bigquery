@@ -7,6 +7,11 @@ view: google_adwords_base {
     sql: CAST(${TABLE}.date AS DATE) ;;
   }
 
+  dimension: date_string {
+    hidden: yes
+    sql: CAST(${TABLE}.date AS STRING) ;;
+  }
+
   dimension: latest {
     hidden: yes
     type: yesno
