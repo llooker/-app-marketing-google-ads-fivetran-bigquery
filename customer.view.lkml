@@ -58,7 +58,7 @@ view: customer_adapter {
   }
 
   dimension: customer_descriptive_name {
-    # hidden: yes
+    hidden: yes
     type: string
     sql: ${TABLE}.customer_descriptive_name ;;
   }
