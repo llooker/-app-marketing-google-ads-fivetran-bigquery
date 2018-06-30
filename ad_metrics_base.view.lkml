@@ -1,6 +1,24 @@
 view: ad_metrics_conversion_base {
   extension: required
 
+  measure: total_conversions {
+    hidden: yes
+    label: "Conversions"
+    description: "Total conversions."
+    type: sum
+    sql: ${conversions} ;;
+    value_format_name: decimal_0
+  }
+
+  measure: total_conversionvalue {
+    hidden: yes
+    label: "Conv. Value"
+    description: "Total conversion value."
+    type: sum
+    sql: ${conversionvalue} ;;
+    value_format_name: usd_0
+  }
+
   measure: average_value_per_conversion {
     hidden: yes
     label: "Value per Conversion"
@@ -15,7 +33,7 @@ view: ad_metrics_conversion_base {
     label: "Cost per Conversion"
     description: "Cost per conversion."
     type: number
-    sql: ${total_cost}*1.0 / NULLIF(${conversion.total_conversions},0) ;;
+    sql: ${fact.total_cost}*1.0 / NULLIF(${total_conversions},0) ;;
     value_format_name: usd
   }
 
@@ -24,7 +42,7 @@ view: ad_metrics_conversion_base {
     label: "Value per Click"
     description: "Average value per ad click."
     type: number
-    sql: ${conversion.total_conversionvalue}*1.0 / NULLIF(${total_clicks},0) ;;
+    sql: ${total_conversionvalue}*1.0 / NULLIF(${fact.total_clicks},0) ;;
     value_format_name: usd
   }
 
@@ -33,7 +51,7 @@ view: ad_metrics_conversion_base {
     label: "Value per Impression"
     description: "Average value per ad impression viewed."
     type: number
-    sql: ${conversion.total_conversionvalue}*1.0 / NULLIF(${total_impressions},0) ;;
+    sql: ${total_conversionvalue}*1.0 / NULLIF(${fact.total_impressions},0) ;;
     value_format_name: usd
   }
 
@@ -42,7 +60,7 @@ view: ad_metrics_conversion_base {
     label: "ROAS"
     description: "Average Return on Ad Spend."
     type: number
-    sql: ${conversion.total_conversionvalue}*1.0 / NULLIF(${total_cost},0) ;;
+    sql: ${total_conversionvalue}*1.0 / NULLIF(${fact.total_cost},0) ;;
     value_format_name: percent_0
   }
 
@@ -51,7 +69,7 @@ view: ad_metrics_conversion_base {
     label: "Conversion Rate"
     description: "Percent of people that convert after they interact with an ad."
     type: number
-    sql: ${conversion.total_conversions}*1.0 / NULLIF(${total_clicks},0) ;;
+    sql: ${total_conversions}*1.0 / NULLIF(${fact.total_clicks},0) ;;
     value_format_name: percent_2
   }
 }

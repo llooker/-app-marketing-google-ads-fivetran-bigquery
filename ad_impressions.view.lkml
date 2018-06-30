@@ -186,6 +186,7 @@ view: ad_impressions_adapter_base {
   }
 
   dimension: cost {
+    hidden: yes
     type: number
     sql: ${TABLE}.cost ;;
   }
@@ -482,7 +483,7 @@ explore: ad_impressions_ad_adapter {
 }
 
 view: ad_impressions_ad_adapter {
-  extends: [ad_impressions_keyword_adapter, ad_metrics_conversion_base]
+  extends: [ad_impressions_keyword_adapter]
   sql_table_name: {{ fact.adwords_schema._sql }}.ad_stats ;;
 
   dimension: ad_primary_key {
@@ -529,7 +530,7 @@ view: ad_impressions_ad_adapter {
 }
 
 view: ad_impressions_ad_conversion_adapter {
-  extends: [adwords_config, google_adwords_base, transformations_base]
+  extends: [adwords_config, google_adwords_base, transformations_base, ad_metrics_conversion_base]
   sql_table_name: {{ fact.adwords_schema._sql }}.ad_conversion_stats ;;
 
   dimension: ad_conversion_primary_key {
@@ -555,24 +556,6 @@ view: ad_impressions_ad_conversion_adapter {
     primary_key: yes
     hidden: yes
     sql: ${ad_conversion_primary_key} ;;
-  }
-
-  measure: total_conversions {
-    hidden: yes
-    label: "Conversions"
-    description: "Total conversions."
-    type: sum
-    sql: ${conversions} ;;
-    value_format_name: decimal_0
-  }
-
-  measure: total_conversionvalue {
-    hidden: yes
-    label: "Conv. Value"
-    description: "Total conversion value."
-    type: sum
-    sql: ${conversionvalue} ;;
-    value_format_name: usd_0
   }
 
   dimension: base_campaign_id {
@@ -667,7 +650,6 @@ view: ad_impressions_ad_conversion_adapter {
   }
 
   dimension: conversion_type_name {
-    hidden: yes
     type: string
     sql: ${TABLE}.conversion_type_name ;;
   }
