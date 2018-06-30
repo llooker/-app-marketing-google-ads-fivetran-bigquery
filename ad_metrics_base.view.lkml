@@ -2,6 +2,7 @@ view: ad_metrics_conversion_base {
   extension: required
 
   measure: average_value_per_conversion {
+    hidden: yes
     label: "Value per Conversion"
     description: "Average value per conversion."
     type: number
@@ -10,6 +11,7 @@ view: ad_metrics_conversion_base {
   }
 
   measure: average_cost_per_conversion {
+    hidden: yes
     label: "Cost per Conversion"
     description: "Cost per conversion."
     type: number
@@ -18,6 +20,7 @@ view: ad_metrics_conversion_base {
   }
 
   measure: average_value_per_click {
+    hidden: yes
     label: "Value per Click"
     description: "Average value per ad click."
     type: number
@@ -26,6 +29,7 @@ view: ad_metrics_conversion_base {
   }
 
   measure: average_value_per_impression {
+    hidden: yes
     label: "Value per Impression"
     description: "Average value per ad impression viewed."
     type: number
@@ -34,6 +38,7 @@ view: ad_metrics_conversion_base {
   }
 
   measure: average_value_per_cost {
+    hidden: yes
     label: "ROAS"
     description: "Average Return on Ad Spend."
     type: number
@@ -42,6 +47,7 @@ view: ad_metrics_conversion_base {
   }
 
   measure: average_conversion_rate {
+    hidden: yes
     label: "Conversion Rate"
     description: "Percent of people that convert after they interact with an ad."
     type: number

@@ -168,11 +168,13 @@ view: ad_impressions_adapter_base {
   }
 
   dimension: clicks {
+    hidden: yes
     type: number
     sql: ${TABLE}.clicks ;;
   }
 
   dimension: conversions {
+    hidden: yes
     type: number
     sql: ${TABLE}.conversions ;;
   }
@@ -234,7 +236,7 @@ view: ad_impressions_hour_adapter {
 
   dimension: primary_key {
     primary_key: yes
-#     hidden: yes
+    hidden: yes
     sql: concat(${account_primary_key}, "|", ${hour_of_day_string}) ;;
   }
 }
@@ -285,7 +287,7 @@ view: ad_impressions_campaign_adapter_base {
 
   dimension: primary_key {
     primary_key: yes
-#     hidden: yes
+    hidden: yes
     sql: ${campaign_primary_key} ;;
   }
 
@@ -651,6 +653,7 @@ view: ad_impressions_ad_conversion_adapter {
   }
 
   dimension: conversion_category_name {
+    hidden: yes
     type: string
     sql: ${TABLE}.conversion_category_name ;;
   }
@@ -662,6 +665,7 @@ view: ad_impressions_ad_conversion_adapter {
   }
 
   dimension: conversion_type_name {
+    hidden: yes
     type: string
     sql: ${TABLE}.conversion_type_name ;;
   }
