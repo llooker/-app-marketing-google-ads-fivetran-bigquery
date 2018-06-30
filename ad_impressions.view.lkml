@@ -558,6 +558,7 @@ view: ad_impressions_ad_conversion_adapter {
   }
 
   measure: total_conversions {
+    hidden: yes
     label: "Conversions"
     description: "Total conversions."
     type: sum
@@ -566,6 +567,7 @@ view: ad_impressions_ad_conversion_adapter {
   }
 
   measure: total_conversionvalue {
+    hidden: yes
     label: "Conv. Value"
     description: "Total conversion value."
     type: sum
