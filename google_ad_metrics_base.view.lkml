@@ -2,7 +2,7 @@ include: "ad_metrics_base.view"
 
 view: google_ad_metrics_base {
   extension: required
-  extends: [ad_metrics_base]
+  extends: [ad_metrics_base_adapter]
 
   measure: average_interaction_rate {
     label: "Interaction Rate"

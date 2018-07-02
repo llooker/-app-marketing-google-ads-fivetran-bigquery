@@ -530,7 +530,7 @@ view: ad_impressions_ad_adapter {
 }
 
 view: ad_impressions_ad_conversion_adapter {
-  extends: [adwords_config, google_adwords_base, transformations_base, ad_metrics_conversion_base]
+  extends: [adwords_config, google_adwords_base, transformations_base, ad_metrics_conversion_base_adapter]
   sql_table_name: {{ fact.adwords_schema._sql }}.ad_conversion_stats ;;
 
   dimension: ad_conversion_primary_key {

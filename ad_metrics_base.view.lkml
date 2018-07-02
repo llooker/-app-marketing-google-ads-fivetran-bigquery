@@ -1,4 +1,4 @@
-view: ad_metrics_conversion_base {
+view: ad_metrics_conversion_base_adapter {
   extension: required
 
   measure: total_conversions {
@@ -74,7 +74,7 @@ view: ad_metrics_conversion_base {
   }
 }
 
-view: ad_metrics_base {
+view: ad_metrics_base_adapter {
   extension: required
 
   measure: total_clicks {
