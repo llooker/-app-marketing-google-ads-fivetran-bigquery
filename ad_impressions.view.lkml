@@ -101,7 +101,7 @@ view: ad_impressions_adapter {
 
 view: ad_impressions_adapter_base {
   extension: required
-  extends: [adwords_config, google_adwords_base, transformations_base, google_ad_metrics_base]
+  extends: [adwords_config, google_adwords_base, transformations_base, google_ad_metrics_base_adapter]
 
   dimension: account_primary_key {
     hidden: yes

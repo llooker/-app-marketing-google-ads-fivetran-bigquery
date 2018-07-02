@@ -1,6 +1,6 @@
 include: "ad_metrics_base.view"
 
-view: google_ad_metrics_base {
+view: google_ad_metrics_base_adapter {
   extension: required
   extends: [ad_metrics_base_adapter]
 
