@@ -28,16 +28,24 @@ view: transformations_base {
     type: string
     case: {
       when: {
-        sql: ${ad_network_type1} = 'SHASTA_AD_NETWORK_TYPE_1_SEARCH' AND ${ad_network_type2} = 'SHASTA_AD_NETWORK_TYPE_2_SEARCH' ;;
+        sql: ${ad_network_type1} = 'Search Network' AND ${ad_network_type2} = 'Google search' ;;
         label: "Search"
       }
       when: {
-        sql: ${ad_network_type1} = 'SHASTA_AD_NETWORK_TYPE_1_SEARCH' AND ${ad_network_type2} = 'SHASTA_AD_NETWORK_TYPE_2_SEARCH_PARTNERS' ;;
+        sql: ${ad_network_type1} = 'Search Network' AND ${ad_network_type2} = 'Search partners' ;;
         label: "Search Partners"
       }
       when: {
-        sql: ${ad_network_type1} = 'SHASTA_AD_NETWORK_TYPE_1_CONTENT' ;;
+        sql: ${ad_network_type1} = 'Display Network' ;;
         label: "Content"
+      }
+      when: {
+        sql: ${ad_network_type1} = 'YouTube Videos' ;;
+        label: "YouTube Videos"
+      }
+      when: {
+        sql: ${ad_network_type1} = 'YouTube Search' ;;
+        label: "YouTube Search"
       }
       else: "Other"
     }
@@ -48,7 +56,7 @@ view: transformations_base {
     type: string
     case: {
       when: {
-        sql: ${device} LIKE '%Desktop%' ;;
+        sql: ${device} LIKE '%Desktop%' OR ${device} LIKE '%Computers%' ;;
         label: "Desktop"
       }
       when: {
