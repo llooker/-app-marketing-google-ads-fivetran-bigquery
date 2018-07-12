@@ -19,13 +19,13 @@ view: google_adwords_base {
   }
 
   dimension: external_customer_id {
-    sql: ${TABLE}.external_customer_id ;;
     hidden: yes
+    sql: ${TABLE}.external_customer_id ;;
   }
 
   dimension: external_customer_id_string {
-    sql: CAST(${external_customer_id} as STRING) ;;
     hidden: yes
+    sql: CAST(${TABLE}.external_customer_id as STRING) ;;
   }
 
 }
