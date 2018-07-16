@@ -16,6 +16,7 @@ explore: ad_join {
 }
 
 explore: ad_adapter {
+  extension: required
   persist_with: adwords_etl_datagroup
   from: ad_adapter
   view_name: ad
@@ -48,6 +49,7 @@ explore: ad_adapter {
 }
 
 view: ad_adapter {
+  extension: required
   extends: [adwords_config, google_adwords_base]
   sql_table_name: {{ ad.adwords_schema._sql }}.ad ;;
 

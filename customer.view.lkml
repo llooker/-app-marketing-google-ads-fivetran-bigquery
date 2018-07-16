@@ -13,6 +13,7 @@ explore: customer_join {
 }
 
 explore: customer_adapter {
+  extension: required
   persist_with: adwords_etl_datagroup
   from: customer_adapter
   view_name: customer
@@ -20,6 +21,7 @@ explore: customer_adapter {
 }
 
 view: customer_adapter {
+  extension: required
   extends: [adwords_config, google_adwords_base]
     sql_table_name:
   (

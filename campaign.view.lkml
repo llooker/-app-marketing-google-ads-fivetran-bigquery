@@ -14,6 +14,7 @@ explore: campaign_join {
 }
 
 explore: campaign_adapter {
+  extension: required
   persist_with: adwords_etl_datagroup
   from: campaign_adapter
   view_name: campaign
@@ -29,6 +30,7 @@ explore: campaign_adapter {
 }
 
 view: campaign_adapter {
+  extension: required
   extends: [adwords_config, google_adwords_base]
   sql_table_name: {{ campaign.adwords_schema._sql }}.campaign ;;
 

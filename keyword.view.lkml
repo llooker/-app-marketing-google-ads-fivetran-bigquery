@@ -17,6 +17,7 @@ explore: keyword_join {
 }
 
 explore: keyword_adapter {
+  extension: required
   persist_with: adwords_etl_datagroup
   from: keyword_adapter
   view_name: keyword
@@ -49,6 +50,7 @@ explore: keyword_adapter {
 }
 
 view: keyword_adapter {
+  extension: required
   extends: [adwords_config, google_adwords_base]
   sql_table_name: {{ keyword.adwords_schema._sql }}.keyword ;;
 
