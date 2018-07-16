@@ -1,5 +1,3 @@
-include: "/app_marketing_analytics_config/adwords_config.view"
-
 include: "campaign.view"
 
 explore: ad_group_join {

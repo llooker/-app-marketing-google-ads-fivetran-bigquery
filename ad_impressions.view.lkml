@@ -1,5 +1,3 @@
-include: "/app_marketing_analytics_config/adwords_config.view"
-
 include: "google_ad_metrics_base.view"
 include: "ad.view"
 include: "geotargeting.view"
