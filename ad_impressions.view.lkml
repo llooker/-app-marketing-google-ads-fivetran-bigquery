@@ -71,7 +71,6 @@ view: transformations_base {
 }
 
 explore: ad_impressions_adapter {
-  extension: required
   extends: [customer_join]
   from: ad_impressions_adapter
   view_name: fact
@@ -103,7 +102,6 @@ view: ad_impressions_derived_table {
 }
 
 view: ad_impressions_adapter {
-  extension: required
   extends: [ad_impressions_derived_table, ad_impressions_adapter_base]
 }
 
@@ -231,7 +229,6 @@ view: ad_impressions_adapter_base {
 }
 
 explore: ad_impressions_hour_adapter {
-  extension: required
   extends: [ad_impressions_adapter]
   from: ad_impressions_hour_adapter
   view_name: fact
@@ -241,7 +238,6 @@ explore: ad_impressions_hour_adapter {
 }
 
 view: ad_impressions_hour_adapter {
-  extension: required
   extends: [ad_impressions_adapter_base, hour_base]
   sql_table_name: {{ fact.adwords_schema._sql }}.account_hourly_stats ;;
 
@@ -253,7 +249,6 @@ view: ad_impressions_hour_adapter {
 }
 
 explore: ad_impressions_campaign_adapter {
-  extension: required
   extends: [ad_impressions_adapter, campaign_join]
   from: ad_impressions_campaign_adapter
   view_name: fact
@@ -285,12 +280,10 @@ view: ad_impressions_campaign_derived_table {
 }
 
 view: ad_impressions_campaign_adapter {
-  extension: required
   extends: [ad_impressions_campaign_derived_table, ad_impressions_campaign_adapter_base]
 }
 
 view: ad_impressions_campaign_adapter_base {
-  extension: required
   extends: [ad_impressions_adapter_base]
 
   dimension: campaign_primary_key {
@@ -321,7 +314,6 @@ view: ad_impressions_campaign_adapter_base {
 }
 
 explore: ad_impressions_campaign_hour_adapter {
-  extension: required
   extends: [ad_impressions_campaign_adapter]
   from: ad_impressions_campaign_hour_adapter
   view_name: fact
@@ -331,7 +323,6 @@ explore: ad_impressions_campaign_hour_adapter {
 }
 
 view: ad_impressions_campaign_hour_adapter {
-  extension: required
   extends: [ad_impressions_campaign_adapter_base, hour_base]
   sql_table_name: {{ fact.adwords_schema._sql }}.campaign_hourly_stats ;;
 
@@ -343,7 +334,6 @@ view: ad_impressions_campaign_hour_adapter {
 }
 
 explore: ad_impressions_ad_group_adapter {
-  extension: required
   extends: [ad_impressions_campaign_adapter, ad_group_join]
   from: ad_impressions_ad_group_adapter
   view_name: fact
@@ -376,7 +366,6 @@ view: ad_impressions_ad_group_derived_table {
 }
 
 view: ad_impressions_ad_group_adapter {
-  extension: required
   extends: [ad_impressions_ad_group_derived_table, ad_impressions_ad_group_adapter_base]
 }
 
@@ -412,7 +401,6 @@ view: ad_impressions_ad_group_adapter_base {
 }
 
 explore: ad_impressions_ad_group_hour_adapter {
-  extension: required
   extends: [ad_impressions_ad_group_adapter]
   from: ad_impressions_ad_group_hour_adapter
   view_name: fact
@@ -422,7 +410,6 @@ explore: ad_impressions_ad_group_hour_adapter {
 }
 
 view: ad_impressions_ad_group_hour_adapter {
-  extension: required
   extends: [ad_impressions_ad_group_adapter_base, hour_base]
   sql_table_name: {{ fact.adwords_schema._sql }}.ad_group_hourly_stats ;;
 
@@ -434,7 +421,6 @@ view: ad_impressions_ad_group_hour_adapter {
 }
 
 explore: ad_impressions_keyword_adapter {
-  extension: required
   extends: [ad_impressions_ad_group_adapter, keyword_join]
   from: ad_impressions_keyword_adapter
   view_name: fact
@@ -444,7 +430,6 @@ explore: ad_impressions_keyword_adapter {
 }
 
 view: ad_impressions_keyword_adapter {
-  extension: required
   extends: [ad_impressions_ad_group_adapter_base]
   sql_table_name: {{ fact.adwords_schema._sql }}.keyword_stats ;;
 
@@ -477,7 +462,6 @@ view: ad_impressions_keyword_adapter {
 }
 
 explore: ad_impressions_ad_adapter {
-  extension: required
   extends: [ad_impressions_keyword_adapter, ad_join]
   from: ad_impressions_ad_adapter
   view_name: fact
@@ -504,7 +488,6 @@ explore: ad_impressions_ad_adapter {
 }
 
 view: ad_impressions_ad_adapter {
-  extension: required
   extends: [ad_impressions_keyword_adapter]
   sql_table_name: {{ fact.adwords_schema._sql }}.ad_stats ;;
 
@@ -552,7 +535,6 @@ view: ad_impressions_ad_adapter {
 }
 
 view: ad_impressions_ad_conversion_adapter {
-  extension: required
   extends: [adwords_config, google_adwords_base, transformations_base, ad_metrics_conversion_base_adapter]
   sql_table_name: {{ fact.adwords_schema._sql }}.ad_conversion_stats ;;
 
@@ -704,7 +686,6 @@ view: ad_impressions_ad_conversion_adapter {
 }
 
 explore: ad_impressions_geo_adapter {
-  extension: required
   extends: [ad_impressions_ad_group_adapter]
   from: ad_impressions_geo_adapter
   view_name: fact
@@ -777,7 +758,6 @@ explore: ad_impressions_geo_adapter {
 }
 
 view: ad_impressions_geo_adapter {
-  extension: required
   extends: [ad_impressions_ad_group_adapter]
   sql_table_name: {{ fact.adwords_schema._sql }}.geo_stats ;;
 
