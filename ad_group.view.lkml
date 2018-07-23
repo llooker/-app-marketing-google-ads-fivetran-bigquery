@@ -88,7 +88,7 @@ view: ad_group_adapter {
   dimension: status_active {
     hidden: yes
     type: yesno
-    sql: ${ad_group_status} = "ENABLED" ;;
+    sql: ${ad_group_status} = "enabled" ;;
   }
 
   dimension: ad_group_tablet_bid_modifier {

@@ -119,22 +119,16 @@ view: campaign_adapter {
     required_fields: [external_customer_id, campaign_id]
   }
 
-  dimension: campaign_status_raw {
+  dimension: campaign_status {
     hidden: yes
     type: string
     sql: ${TABLE}.campaign_status ;;
   }
 
-  dimension: campaign_status {
-    hidden: yes
-    type: string
-    sql: REPLACE(${campaign_status_raw}, "Status_", "") ;;
-  }
-
   dimension: status_active {
     hidden: yes
     type: yesno
-    sql: ${campaign_status} = "Active" ;;
+    sql: ${campaign_status} = "enabled" ;;
   }
 
   dimension: campaign_tablet_bid_modifier {
@@ -200,16 +194,10 @@ view: campaign_adapter {
     sql: ${TABLE}.period ;;
   }
 
-  dimension: serving_status_raw {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.serving_status ;;
-  }
-
   dimension: serving_status {
     hidden: yes
     type: string
-    sql: REPLACE(${serving_status_raw}, "CAMPAIGN_SYSTEM_SERVING_STATUS_", "") ;;
+    sql: ${TABLE}.serving_status ;;
   }
 
   dimension_group: start {

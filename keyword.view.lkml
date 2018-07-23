@@ -254,32 +254,21 @@ view: keyword_adapter {
     hidden:  yes
   }
 
-  dimension: status_raw {
+  dimension: status {
     hidden: yes
     type: string
     sql: ${TABLE}.status ;;
   }
 
-  dimension: status {
-    hidden: yes
-    type: string
-    sql: REPLACE(${status_raw}, "Status_", "") ;;
-  }
-
   dimension: status_active {
     type: yesno
-    sql: ${status} = "Active" ;;
-  }
-
-  dimension: system_serving_status_raw {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.system_serving_status_raw ;;
+    sql: ${status} = "enabled" ;;
   }
 
   dimension: system_serving_status {
+    hidden: yes
     type: string
-    sql: REPLACE(${system_serving_status_raw}, "CRITERIA_SYSTEM_SERVING_STATUS_", "") ;;
+    sql: ${TABLE}.system_serving_status ;;
   }
 
   dimension: top_of_page_cpc {

@@ -87,16 +87,10 @@ view: ad_adapter {
     hidden: yes
   }
 
-  dimension: creative_approval_status_raw {
+  dimension: creative_approval_status {
     hidden: yes
     type: string
-    sql: ${TABLE}.creative_approval_status_raw ;;
-  }
-
-  dimension: creative_approval_status {
-    type: string
-    sql: REPLACE(${creative_approval_status_raw}, "ApprovalStatus_", "") ;;
-#     expression: replace(${creative_approval_status_raw}, "ApprovalStatus_", "") ;;
+    sql: ${TABLE}.creative_approval_status ;;
   }
 
   dimension: creative_destination_url {
@@ -270,22 +264,15 @@ view: ad_adapter {
     hidden: yes
   }
 
-  dimension: status_raw {
+  dimension: status {
     hidden: yes
     type: string
     sql: ${TABLE}.status ;;
   }
 
-  dimension: status {
-    hidden: yes
-    type: string
-    sql: REPLACE(${status_raw}, "Status_", "") ;;
-    # expression: replace(${status_raw}, "Status_", "") ;;
-  }
-
   dimension: status_active {
     type: yesno
-    sql: ${status} = "Enabled" ;;
+    sql: ${status} = "enabled" ;;
   }
 
   dimension: creative {
