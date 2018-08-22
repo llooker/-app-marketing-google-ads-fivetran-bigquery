@@ -1,7 +1,12 @@
 include: "google_ad_metrics_base.view"
 include: "ad.view"
+include: "age_range.view"
+include: "audience.view"
+include: "gender.view"
 include: "geotargeting.view"
 include: "keyword.view"
+include: "parental_status.view"
+include: "video.view"
 
 view: hour_base {
   extension: required
@@ -789,5 +794,205 @@ view: ad_impressions_geo_adapter {
     hidden: yes
     type: number
     sql: ${TABLE}.region_criteria_id ;;
+  }
+}
+
+explore: ad_impressions_age_range_adapter {
+  persist_with: adwords_etl_datagroup
+  extends: [ad_impressions_ad_group_adapter]
+  from: ad_impressions_age_range_adapter
+  view_name: fact
+
+  join: criteria {
+    from: age_range_adapter
+    view_label: "Age Range"
+    sql_on: ${fact.criterion_id} = ${criteria.criterion_id} AND
+      ${fact.ad_group_id} = ${criteria.ad_group_id} AND
+      ${fact.campaign_id} = ${criteria.campaign_id} AND
+      ${fact.external_customer_id} = ${criteria.external_customer_id} AND
+      ${fact._date} = ${criteria._date} ;;
+    relationship: many_to_one
+  }
+}
+
+view: ad_impressions_age_range_adapter {
+  extends: [ad_impressions_keyword_adapter]
+  sql_table_name: {{ fact.adwords_schema._sql }}.age_range_stats ;;
+}
+
+explore: ad_impressions_audience_adapter {
+  persist_with: adwords_etl_datagroup
+  extends: [ad_impressions_ad_group_adapter]
+  from: ad_impressions_audience_adapter
+  view_name: fact
+
+  join: criteria {
+    from: audience_adapter
+    view_label: "Audience"
+    sql_on: ${fact.criterion_id} = ${criteria.criterion_id} AND
+      ${fact.ad_group_id} = ${criteria.ad_group_id} AND
+      ${fact.campaign_id} = ${criteria.campaign_id} AND
+      ${fact.external_customer_id} = ${criteria.external_customer_id} AND
+      ${fact._date} = ${criteria._date} ;;
+    relationship: many_to_one
+  }
+}
+
+view: ad_impressions_audience_adapter {
+  extends: [ad_impressions_keyword_adapter]
+  sql_table_name: {{ fact.adwords_schema._sql }}.audience_stats ;;
+}
+
+explore: ad_impressions_gender_adapter {
+  persist_with: adwords_etl_datagroup
+  extends: [ad_impressions_ad_group_adapter]
+  from: ad_impressions_gender_adapter
+  view_name: fact
+
+  join: criteria {
+    from: gender_adapter
+    view_label: "Gender"
+    sql_on: ${fact.criterion_id} = ${criteria.criterion_id} AND
+      ${fact.ad_group_id} = ${criteria.ad_group_id} AND
+      ${fact.campaign_id} = ${criteria.campaign_id} AND
+      ${fact.external_customer_id} = ${criteria.external_customer_id} AND
+      ${fact._date} = ${criteria._date} ;;
+    relationship: many_to_one
+  }
+}
+
+view: ad_impressions_gender_adapter {
+  extends: [ad_impressions_keyword_adapter]
+  sql_table_name: {{ fact.adwords_schema._sql }}.gender_stats ;;
+}
+
+explore: ad_impressions_parental_status_adapter {
+  persist_with: adwords_etl_datagroup
+  extends: [ad_impressions_ad_group_adapter]
+  from: ad_impressions_parental_status_adapter
+  view_name: fact
+
+  join: criteria {
+    from: parental_status_adapter
+    view_label: "Parental Status"
+    sql_on: ${fact.criterion_id} = ${criteria.criterion_id} AND
+      ${fact.ad_group_id} = ${criteria.ad_group_id} AND
+      ${fact.campaign_id} = ${criteria.campaign_id} AND
+      ${fact.external_customer_id} = ${criteria.external_customer_id} AND
+      ${fact._date} = ${criteria._date} ;;
+    relationship: many_to_one
+  }
+}
+
+view: ad_impressions_parental_status_adapter {
+  extends: [ad_impressions_keyword_adapter]
+  sql_table_name: {{ fact.adwords_schema._sql }}.parental_status_stats ;;
+}
+
+explore: ad_impressions_video_adapter {
+  persist_with: adwords_etl_datagroup
+  extends: [ad_impressions_ad_group_adapter]
+  from: ad_impressions_video_adapter
+  view_name: fact
+
+  join: video {
+    from: video_adapter
+    view_label: "Video"
+    sql_on: ${fact.video_id} = ${video.video_id} AND
+      ${fact.ad_group_id} = ${video.ad_group_id} AND
+      ${fact.campaign_id} = ${video.campaign_id} AND
+      ${fact.external_customer_id} = ${video.external_customer_id} AND
+      ${fact._date} = ${video._date} ;;
+    relationship: many_to_one
+  }
+}
+
+view: ad_impressions_video_adapter {
+  extends: [adwords_config, google_adwords_base, transformations_base]
+  sql_table_name: {{ fact.adwords_schema._sql }}.video_stats ;;
+
+  dimension: ad_group_id {
+    hidden: yes
+  }
+
+  dimension: ad_group_id_string {
+    hidden: yes
+    sql: CAST(${ad_group_id} as STRING) ;;
+  }
+
+  dimension: ad_network_type1 {
+    hidden: yes
+    sql: ${TABLE}.ad_network_type_1 ;;
+  }
+
+  dimension: ad_network_type2 {
+    hidden: yes
+    sql: ${TABLE}.ad_network_type_2 ;;
+  }
+
+  dimension: campaign_id {
+    hidden: yes
+  }
+
+  dimension: campaign_id_string {
+    hidden: yes
+    sql: CAST(${campaign_id} as STRING) ;;
+  }
+
+  dimension: clicks {
+    hidden: yes
+    type: number
+  }
+
+  dimension: conversions {
+    hidden: yes
+    type: number
+  }
+
+  dimension: conversionvalue {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.conversion_value ;;
+  }
+
+  dimension: cost {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.cost ;;
+  }
+
+  dimension: creative_id {
+    hidden: yes
+  }
+
+  dimension: creative_id_string {
+    hidden: yes
+    sql: CAST(${creative_id} as STRING) ;;
+  }
+
+  dimension: creative_status {
+    hidden: yes
+  }
+
+  dimension: device {
+    hidden: yes
+  }
+
+  dimension: impressions {
+    hidden: yes
+    type: number
+  }
+
+  dimension: video_id {
+    hidden: yes
+  }
+
+  dimension: video_channel_id {
+    hidden: yes
+  }
+
+  dimension: view_through_conversions {
+    hidden: yes
+    type: number
   }
 }
