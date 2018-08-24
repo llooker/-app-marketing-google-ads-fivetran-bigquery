@@ -730,7 +730,7 @@ explore: ad_impressions_geo_adapter {
     from: geotargeting
     view_label: "US Postal Code"
     fields: [state]
-    sql_on: ${geo_us_postal_code.parent_id} = ${geo_us_postal_code_state.criteria_id_string} AND
+    sql_on: ${geo_us_postal_code.parent_id} = ${geo_us_postal_code_state.criteria_id} AND
       ${geo_us_postal_code_state.is_us_state} ;;
     relationship: many_to_one
     type: inner
