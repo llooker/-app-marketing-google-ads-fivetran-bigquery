@@ -37,9 +37,17 @@ explore: ad_group_adapter {
   }
 }
 
+view: ad_group_table_name_base {
+  extension: required
+  dimension: ad_group_table_name {
+    hidden: yes
+    sql:ad_group;;
+  }
+}
+
 view: ad_group_adapter {
-  extends: [adwords_config, google_adwords_base]
-  sql_table_name: {{ ad_group.adwords_schema._sql }}.ad_group ;;
+  extends: [ad_group_table_name_base, google_adwords_base, adwords_config]
+  sql_table_name:{{ ad_group.adwords_schema._sql }}.{{ ad_group.ad_group_table_name._sql }};;
 
   dimension: ad_group_desktop_bid_modifier {
     hidden: yes
