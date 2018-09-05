@@ -51,10 +51,9 @@ view: customer_adapter {
   }
 
   dimension: account_descriptive_name {
-    hidden: yes
     type: string
     sql: ${TABLE}.account_descriptive_name ;;
-    required_fields: [external_customer_id]
+#     required_fields: [external_customer_id]
   }
 
   dimension: account_time_zone {
